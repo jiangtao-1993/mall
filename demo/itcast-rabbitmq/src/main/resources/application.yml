@@ -1,0 +1,6 @@
+spring:
+  rabbitmq:
+    host: 192.168.206.66
+    username: heima88
+    password: heima88
+    virtual-host: /haha

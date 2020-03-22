@@ -1,0 +1,10 @@
+server:
+  port: 8055
+spring:
+  application:
+    name: thymeleaf-service
+  thymeleaf:
+    cache: false #thymeleaf缓存，为了提升请求的效率，使用了缓存
+
+  redis:
+    host: 192.168.206.66

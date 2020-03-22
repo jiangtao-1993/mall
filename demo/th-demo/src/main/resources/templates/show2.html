@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>show2</title>
+</head>
+<body>
+<h1 th:object="${user}">
+    <!--    ognl表达式，object graphic navigate language,*引用-->
+    欢迎您：<span th:text="*{name}">name</span><br/>
+    欢迎您：<span th:text="*{age}">age</span><br/>
+    欢迎您：<span th:text="${user.friend.name}">friend.name</span><br/>
+    欢迎您：<span th:text="${user.friend.age}">friend.age</span><br/>
+</h1>
+
+<h2 th:object="${user}">
+    <p>FirstName: <span th:text="*{name.split(' ')}">Jack</span>.</p>
+    <p>LastName: <span th:text="*{name.split(' ')[1]}">Li</span>.</p>
+</h2>
+</body>
+</html>

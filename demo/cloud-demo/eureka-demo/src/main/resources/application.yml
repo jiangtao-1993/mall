@@ -1,0 +1,16 @@
+server:
+  port: 10086
+
+spring:
+  application:
+    name: eureka-service
+
+eureka:
+  client: #作为客户端的配置
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka #告诉eureka，把自己注册给10086
+    register-with-eureka: false #关闭自动注册
+    fetch-registry: false #关闭自动拉取
+  server: #作为服务的配置
+    eviction-interval-timer-in-ms: 1000 #配置eureka扫描失效服务的周期 1s
+    enable-self-preservation: false # 关闭自我保护模式（缺省为打开）

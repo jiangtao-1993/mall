@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>show3</title>
+</head>
+<body>
+<p>
+    今天是: <span th:text="${#dates.format(today,'yyyy-MM-dd')}">2018-04-25</span><br/>
+
+    运算:<span th:text="${3+3}">算数运算</span><br/>
+    运算:<span th:text="${'3+3'}">算数运算</span><br/>
+    取值name:<span th:text="${name}">取值</span><br/>
+    取值'name':<span th:text="${'name'}">取值</span>
+</p>
+
+<h3 th:text="${'我们的目标工资是'+salary+' 我们要努力达成'}"></h3>
+<h3 th:text="|我们的目标工资是${salary}我们要努力达成|"></h3>
+
+
+</body>
+</html>

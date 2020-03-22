@@ -1,0 +1,24 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: user-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mydb01
+    username: root
+    password: root
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka #注册地址
+
+  instance:
+    ip-address: 127.0.0.1 #注册的ip
+    prefer-ip-address: true #优先提供ip
+    lease-renewal-interval-in-seconds: 5 #修改心跳周期从30-->5
+    lease-expiration-duration-in-seconds: 15 #修改过期时间90--->15
+logging:
+  level:
+    cn.itcast: debug

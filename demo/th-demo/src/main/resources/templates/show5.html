@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>show5</title>
+<!--    声明thymeleaf的取值可以发生在js中-->
+    <script th:inline="javascript">
+
+       /*表面上的注释是给js，让js在静态解析时，可以顺利解析，但是注释有特征，包含了双中括号，所以thymeleaf解析时可以正常提取*/
+        let name = /*[[${name}]]*/ "";
+
+        let age = /*[[${age}]]*/ 0;
+
+        let isMan = /*[[${isMan}]]*/ false;
+
+        let user = /*[[${user}]]*/ {};
+
+        console.log(name);
+        console.log(age);
+        console.log(isMan);
+        console.log(user);
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

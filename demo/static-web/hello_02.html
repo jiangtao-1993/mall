@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解构对象</title>
+
+    <script>
+        let user = {
+            id:10086,
+            name:"刘德华",
+            age:50
+        }
+
+        //对象直接复制
+        let {id:cid3,...others} = user;
+
+        console.log(cid3);
+        console.log(name);
+        console.log(others);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

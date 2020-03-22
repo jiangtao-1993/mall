@@ -1,0 +1,19 @@
+server:
+  port: 10010 #web端口配置
+
+spring:
+  application:
+    name: zuul-service
+
+zuul:
+  routes:
+    user-service: /user/**   #value表示拦截路径,key表示转发的服务的id，value可以不写，默认就是key的值
+  ignored-services: #设置服务路由的忽略
+    - user-service
+  prefix: /api
+
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5 #修改拉取周期
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
