@@ -1,0 +1,54 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/heima88
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jackson:
+    default-property-inclusion: non_null
+
+  redis:
+    host: 192.168.206.66
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+
+mybatis:
+  type-aliases-package: com.leyou.order.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+ly:
+  worker:
+    workerId: 1
+    dataCenterId: 1
+
+
+  jwt:
+    pubKeyPath: E:/secret/rsa/id_rsa.pub #  公钥地址
+    user:
+      cookieName: LY_TOKEN
+    app:
+      id: 6
+      secret: order-service
+      headerName: heima88
+
+  pay:
+    wx:
+      appID: wx8397f8696b538317 #公众账号ID
+      mchID: 1473426802 #商户号
+      key: T6m9iK73b0kn9g5v426MKfHQH7X8rKwb #随机字符串
+      notifyUrl: http://eux2mj.natappfree.cc/api/pay/wx/notify #异步接收微信支付结果通知的回调地址，通知url必须为外网可访问的url，不能携带参数。
+      tradeType: NATIVE #交易类型
+

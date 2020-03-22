@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: consumer-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 5 #修改服务消费者的拉取周期
+
+user-service: #局部配置，只有consumer请求user-service时负载均衡才使用，随机算法
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+
+logging:
+  level:
+    cn.itcast: debug

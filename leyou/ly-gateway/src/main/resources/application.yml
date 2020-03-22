@@ -1,0 +1,82 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: api-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 5 #拉取周期
+zuul:
+  prefix: /api # 添加路由前缀
+  routes:
+    item-service: /item/** #拦截地址为item，然后把请求发给item-service
+    upload-service: /upload/**
+    search-service: /search/**
+    user-service: /user/**
+    auth-service: /auth/**
+    cart-service: /cart/**
+    order-service: #路由名称
+      path: /order/** #拦截路径
+      serviceId: order-service #服务名称
+      strip-prefix: false #是否消耗路径
+    pay-service: #路由名称
+      path: /pay/** #拦截路径
+      serviceId: order-service #服务名称
+      strip-prefix: false #是否消耗路径
+  sensitive-headers: #关闭zuul的敏感头过滤
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000 # 熔断超时时长：6000ms
+
+ribbon:
+  ConnectTimeout: 500 # ribbon链接超时时长
+  ReadTimeout: 2000 # ribbon读取超时时长
+  MaxAutoRetries: 0  # 当前服务重试次数
+  MaxAutoRetriesNextServer: 1 # 切换服务重试次数
+  OkToRetryOnAllOperations: false # 是否对所有的请求方式都重试，只对get请求重试
+
+
+ly:
+  cors:
+    allowedOrigins:
+      - http://manage.leyou.com
+      - http://www.leyou.com
+    allowCredentials: true
+    allowedHeaders:
+      - "*"
+    allowedMethods:
+      - GET
+      - POST
+      - DELETE
+      - PUT
+      - OPTIONS
+      - HEAD
+    maxAge: 3600
+    filterPath: "/**"
+  jwt:
+    pubKeyPath: D:/heima/rsa/id_rsa.pub # D:/heima/rsa/id_rsa.pub # 公钥地址
+    app:
+      id: 7 #当前服务的id
+      secret: api-gateway #服务密码，测试阶段使用的是服务的名称
+      headerName: heima88 #请求头名称
+    user:
+      cookieName: LY_TOKEN
+
+  filter:
+    allowPaths:
+      - /api/auth/login
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item
+      - /api/pay
+      - /zuul/api/upload

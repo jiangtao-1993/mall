@@ -1,0 +1,58 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: user-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/heima88
+    username: root
+    password: root
+  rabbitmq:
+    host: 192.168.206.66
+    username: heima88
+    password: heima88
+    virtual-host: /haha
+    template: #关于生产者的配置
+      retry: #重试
+        enabled: true #允许重试
+        initial-interval: 10000ms #默认重试间隔
+        max-interval: 80000ms #最大间隔
+        multiplier: 2 #间隔倍数
+    publisher-confirms: true #发送确认
+
+  redis:
+    host: 192.168.206.66
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+
+mybatis:
+  type-aliases-package: com.leyou.user.entity
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com.leyou: debug
+l
+
+ly:
+  encoder:
+    crypt:
+      secret: ${random.uuid} # 随机的密钥，使用uuid
+      strength: 10 # 加密强度4~31，决定了密码和盐加密时的运算次数，超过10以后加密耗时会显著增加
+
+  jwt:
+    pubKeyPath: D:/heima/rsa/id_rsa.pub # D:/heima/rsa/id_rsa.pub # 公钥地址
+    app:
+      id: 1 # 当前服务的id
+      headerName: heima88
+
+
